@@ -6,13 +6,14 @@ import lombok.*;
 import java.util.*;
 @Data
 @ToString
-public class Delivered extends AbstractEvent {
+public class OrderCancelled extends AbstractEvent {
 
     private Long id;
-    private Long orderId;
-    private String address;
+    private Integer qty;
     private String customerId;
+    private String address;
     private String status;
+    private Long foodId;
 }
 
 

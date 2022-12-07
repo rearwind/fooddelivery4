@@ -22,6 +22,23 @@ public class PolicyHandler{
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString){}
 
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='OrderCancelled'")
+    public void wheneverOrderCancelled_Cancel(@Payload OrderCancelled orderCancelled){
+
+        OrderCancelled event = orderCancelled;
+        System.out.println("\n\n##### listener Cancel : " + orderCancelled + "\n\n");
+
+
+        
+
+        // Sample Logic //
+        Payment.cancel(event);
+        
+
+        
+
+    }
+
 }
 
 

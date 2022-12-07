@@ -39,6 +39,22 @@ public class PolicyHandler{
 
     }
 
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='OrderCancelled'")
+    public void wheneverOrderCancelled_Cancel(@Payload OrderCancelled orderCancelled){
+
+        OrderCancelled event = orderCancelled;
+        System.out.println("\n\n##### listener Cancel : " + orderCancelled + "\n\n");
+
+
+        
+
+        // Sample Logic //
+        Cooking.cancel(event);
+        
+
+        
+
+    }
 
 }
 

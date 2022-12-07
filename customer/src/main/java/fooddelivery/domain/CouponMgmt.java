@@ -55,6 +55,8 @@ public class CouponMgmt  {
         CouponMgmt couponMgmt = new CouponMgmt();
         repository().save(couponMgmt);
 
+        CouponIssued couponIssued = new CouponIssued(couponMgmt);
+        couponIssued.publishAfterCommit();
         */
 
         /** Example 2:  finding and process */

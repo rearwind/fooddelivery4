@@ -1,5 +1,6 @@
 package fooddelivery.domain;
 
+import fooddelivery.domain.PayCancelled;
 import fooddelivery.PaymentApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -44,9 +45,6 @@ public class Payment  {
 
     @PostPersist
     public void onPostPersist(){}
-    
-    @PrePersist
-    public void onPrePersist(){}
 
     public static PaymentRepository repository(){
         PaymentRepository paymentRepository = PaymentApplication.applicationContext.getBean(PaymentRepository.class);
@@ -56,6 +54,31 @@ public class Payment  {
 
 
 
+    public static void cancel(OrderCancelled orderCancelled){
+
+        /** Example 1:  new item 
+        Payment payment = new Payment();
+        repository().save(payment);
+
+        PayCancelled payCancelled = new PayCancelled(payment);
+        payCancelled.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderCancelled.get???()).ifPresent(payment->{
+            
+            payment // do something
+            repository().save(payment);
+
+            PayCancelled payCancelled = new PayCancelled(payment);
+            payCancelled.publishAfterCommit();
+
+         });
+        */
+
+        
+    }
 
 
 }
