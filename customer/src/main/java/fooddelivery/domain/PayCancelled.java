@@ -11,7 +11,6 @@ public class PayCancelled extends AbstractEvent {
     private Long id;
     private Long orderId;
     private String status;
-    private String action;
 }
 
 
