@@ -70,7 +70,6 @@
             me.newValue = {
                 'orderId': 0,
                 'status': '',
-                'action': '',
             }
         },
         methods:{

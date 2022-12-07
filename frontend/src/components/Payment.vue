@@ -19,7 +19,6 @@
         <v-card-text>
             <Number label="OrderId" v-model="value.orderId" :editMode="editMode"/>
             <String label="Status" v-model="value.status" :editMode="editMode"/>
-            <String label="Action" v-model="value.action" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -38,7 +37,7 @@
                     @click="save"
                     v-else
             >
-                Pay
+                Save
             </v-btn>
             <v-btn
                     color="deep-purple lighten-2"

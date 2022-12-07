@@ -69,7 +69,6 @@
                     { text: "id", value: "id" },
                     { text: "orderId", value: "orderId" },
                     { text: "status", value: "status" },
-                    { text: "action", value: "action" },
                 ],
             payment : [],
             newValue: {},
@@ -89,7 +88,6 @@
             this.newValue = {
                 'orderId': 0,
                 'status': '',
-                'action': '',
             }
         },
         methods: {
