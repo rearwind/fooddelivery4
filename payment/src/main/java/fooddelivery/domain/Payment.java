@@ -1,6 +1,5 @@
 package fooddelivery.domain;
 
-import fooddelivery.domain.Paid;
 import fooddelivery.PaymentApplication;
 import javax.persistence.*;
 import java.util.List;
