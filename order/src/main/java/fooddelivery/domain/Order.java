@@ -65,9 +65,12 @@ public class Order  {
 
         fooddelivery.external.Payment payment = new fooddelivery.external.Payment();
         // mappings goes here
+        payment.setOrderId(getId());
+
         OrderApplication.applicationContext.getBean(fooddelivery.external.PaymentService.class)
             .pay(payment);
-
+        
+        setStatus("주문됨");
 
         OrderPlaced orderPlaced = new OrderPlaced(this);
         orderPlaced.publishAfterCommit();
@@ -92,7 +95,7 @@ public class Order  {
         return orderRepository;
     }
 
-    public void cancel order(){
+    public void cancel_order(){
         //
     }
 

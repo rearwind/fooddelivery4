@@ -44,16 +44,10 @@ public class Payment  {
     private String action;
 
     @PostPersist
-    public void onPostPersist(){
-    }
+    public void onPostPersist(){}
+    
     @PrePersist
-    public void onPrePersist(){
-
-
-        Paid paid = new Paid(this);
-        paid.publishAfterCommit();
-
-    }
+    public void onPrePersist(){}
 
     public static PaymentRepository repository(){
         PaymentRepository paymentRepository = PaymentApplication.applicationContext.getBean(PaymentRepository.class);
