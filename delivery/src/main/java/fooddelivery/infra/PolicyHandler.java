@@ -14,6 +14,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import fooddelivery.domain.*;
 
+
 @Service
 @Transactional
 public class PolicyHandler{
@@ -50,6 +51,23 @@ public class PolicyHandler{
 
         // Sample Logic //
         Delivery.updateStatus(event);
+        
+
+        
+
+    }
+
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='CookCancelled'")
+    public void wheneverCookCancelled_Cancel(@Payload CookCancelled cookCancelled){
+
+        CookCancelled event = cookCancelled;
+        System.out.println("\n\n##### listener Cancel : " + cookCancelled + "\n\n");
+
+
+        
+
+        // Sample Logic //
+        Delivery.cancel(event);
         
 
         

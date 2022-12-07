@@ -19,3 +19,4 @@ public interface PaymentService {
     public void pay(@RequestBody Payment payment);
 
 }
+

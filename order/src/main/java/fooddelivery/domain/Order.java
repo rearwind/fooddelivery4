@@ -1,20 +1,17 @@
 package fooddelivery.domain;
 
 import fooddelivery.domain.OrderPlaced;
-import fooddelivery.domain.OrderCancelled;
 import fooddelivery.OrderApplication;
 import javax.persistence.*;
 import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="Order_table")
 @Data
 
 public class Order  {
-
 
     
     @Id
@@ -83,11 +80,6 @@ public class Order  {
     }
     @PreRemove
     public void onPreRemove(){
-
-
-        OrderCancelled orderCancelled = new OrderCancelled(this);
-        orderCancelled.publishAfterCommit();
-
     }
 
     public static OrderRepository repository(){
@@ -102,5 +94,10 @@ public class Order  {
     }
 
 
+    public void cancel(){
+        OrderCancelled orderCancelled = new OrderCancelled(this);
+        orderCancelled.publishAfterCommit();
+
+    }
 
 }

@@ -6,13 +6,11 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="Delivery_table")
 @Data
 
 public class Delivery  {
-
 
     
     @Id
@@ -119,6 +117,27 @@ public class Delivery  {
 
          });
         
+
+        
+    }
+    public static void cancel(CookCancelled cookCancelled){
+
+        /** Example 1:  new item 
+        Delivery delivery = new Delivery();
+        repository().save(delivery);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(cookCancelled.get???()).ifPresent(delivery->{
+            
+            delivery // do something
+            repository().save(delivery);
+
+
+         });
+        */
 
         
     }

@@ -1,5 +1,6 @@
 package fooddelivery.domain;
 
+import fooddelivery.domain.CookCancelled;
 import fooddelivery.StoreApplication;
 import javax.persistence.*;
 
@@ -9,13 +10,11 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="Cooking_table")
 @Data
 
 public class Cooking  {
-
 
     
     @Id
@@ -65,6 +64,7 @@ public class Cooking  {
 
     @PostPersist
     public void onPostPersist(){
+
     }
 
     public static CookingRepository repository(){
@@ -137,6 +137,8 @@ public class Cooking  {
         Cooking cooking = new Cooking();
         repository().save(cooking);
 
+        CookCancelled cookCancelled = new CookCancelled(cooking);
+        cookCancelled.publishAfterCommit();
         */
 
         /** Example 2:  finding and process */
@@ -146,8 +148,11 @@ public class Cooking  {
             cooking.setStatus("요리취소됨");
             repository().save(cooking);
 
-        });
-        
+            CookCancelled cookCancelled = new CookCancelled(cooking);
+            cookCancelled.publishAfterCommit();
+
+         });
+        */
 
         
     }

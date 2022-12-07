@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
-
 @RestController
 // @RequestMapping(value="/couponMgmts")
 @Transactional
 public class CouponMgmtController {
     @Autowired
     CouponMgmtRepository couponMgmtRepository;
+
 
 
 

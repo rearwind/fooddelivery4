@@ -7,13 +7,11 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="CouponMgmt_table")
 @Data
 
 public class CouponMgmt  {
-
 
     
     @Id
@@ -37,6 +35,9 @@ public class CouponMgmt  {
     
     private Integer orderCount;
 
+    @PostPersist
+    public void onPostPersist(){
+    }
     @PostUpdate
     public void onPostUpdate() {}
 
