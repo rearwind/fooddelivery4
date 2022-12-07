@@ -131,7 +131,7 @@ public class Cooking  {
 
         
     }
-    public static void cancel(OrderCancelled orderCancelled){
+    public static void cancel(PayCancelled payCancelled){
 
         /** Example 1:  new item 
         Cooking cooking = new Cooking();
@@ -141,14 +141,11 @@ public class Cooking  {
 
         /** Example 2:  finding and process */
         
-        repository().findByOrderId(orderCancelled.getId()).ifPresent(cooking->{
+        repository().findByOrderId(payCancelled.getOrderId()).ifPresent(cooking->{
             
-            if (!"요리시작됨".equals(cooking.getStatus()) && !"요리완료됨".equals(cooking.getStatus())) {
+            cooking.setStatus("요리취소됨");
+            repository().save(cooking);
 
-                cooking.setStatus("요리취소됨");
-                repository().save(cooking);
-
-         }
         });
         
 
