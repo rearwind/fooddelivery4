@@ -23,6 +23,7 @@
             headers: [
                 { text: "id", value: "id" },
                 { text: "status", value: "status" },
+                { text: "orderId", value: "orderId" },
             ],
             myPage : [],
         }),
