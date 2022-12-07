@@ -1,6 +1,5 @@
 package fooddelivery.domain;
 
-import fooddelivery.domain.CookCancelled;
 import fooddelivery.StoreApplication;
 import javax.persistence.*;
 
@@ -66,11 +65,6 @@ public class Cooking  {
 
     @PostPersist
     public void onPostPersist(){
-
-
-        CookCancelled cookCancelled = new CookCancelled(this);
-        cookCancelled.publishAfterCommit();
-
     }
 
     public static CookingRepository repository(){
@@ -143,8 +137,6 @@ public class Cooking  {
         Cooking cooking = new Cooking();
         repository().save(cooking);
 
-        CookCancelled cookCancelled = new CookCancelled(cooking);
-        cookCancelled.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -154,8 +146,6 @@ public class Cooking  {
             cooking // do something
             repository().save(cooking);
 
-            CookCancelled cookCancelled = new CookCancelled(cooking);
-            cookCancelled.publishAfterCommit();
 
          });
         */

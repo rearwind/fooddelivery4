@@ -1,6 +1,7 @@
 package fooddelivery.domain;
 
 import fooddelivery.domain.OrderPlaced;
+import fooddelivery.domain.OrderCancelled;
 import fooddelivery.OrderApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -82,6 +83,11 @@ public class Order  {
     }
     @PreRemove
     public void onPreRemove(){
+
+
+        OrderCancelled orderCancelled = new OrderCancelled(this);
+        orderCancelled.publishAfterCommit();
+
     }
 
     public static OrderRepository repository(){
@@ -89,11 +95,10 @@ public class Order  {
         return orderRepository;
     }
 
-    public void cancel(){
-        setStatus("주문취소됨");
 
-        OrderCancelled orderCancelled = new OrderCancelled(this);
-        orderCancelled.publishAfterCommit();
+    public void cancel(){
+
+
     }
 
 
