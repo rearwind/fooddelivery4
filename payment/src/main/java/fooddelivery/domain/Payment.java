@@ -43,8 +43,12 @@ public class Payment  {
     
     private String action;
 
-    @PostPersist
-    public void onPostPersist(){}
+    @PrePersist
+    public void onPrePersist(){
+
+        setStatus("결제됨");
+
+    }
 
     public static PaymentRepository repository(){
         PaymentRepository paymentRepository = PaymentApplication.applicationContext.getBean(PaymentRepository.class);
