@@ -89,15 +89,11 @@ public class Order  {
         return orderRepository;
     }
 
-    public void cancel_order(){
-        //
-    }
-
-
     public void cancel(){
+        setStatus("주문취소됨");
+
         OrderCancelled orderCancelled = new OrderCancelled(this);
         orderCancelled.publishAfterCommit();
-
     }
 
 

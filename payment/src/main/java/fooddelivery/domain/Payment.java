@@ -64,18 +64,18 @@ public class Payment  {
         payCancelled.publishAfterCommit();
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(orderCancelled.get???()).ifPresent(payment->{
+        repository().findByOrderId(orderCancelled.getId()).ifPresent(payment->{
             
-            payment // do something
+            payment.setStatus("결제취소됨"); // do something
             repository().save(payment);
 
             PayCancelled payCancelled = new PayCancelled(payment);
             payCancelled.publishAfterCommit();
 
          });
-        */
+        
 
         
     }
