@@ -111,27 +111,6 @@ public class Cooking  {
 
         
     }
-    public static void updateStatus(Paid paid){
-
-        /** Example 1:  new item 
-        Cooking cooking = new Cooking();
-        repository().save(cooking);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(paid.get???()).ifPresent(cooking->{
-            
-            cooking // do something
-            repository().save(cooking);
-
-
-         });
-        */
-
-        
-    }
 
 
 }

@@ -38,11 +38,11 @@ public class MyPageViewHandler {
 
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenPaid_then_UPDATE_1(@Payload Paid paid) {
+    public void when_then_UPDATE_(@Payload  ) {
         try {
-            if (!paid.validate()) return;
+            if (!.validate()) return;
                 // view 객체 조회
-            Optional<MyPage> myPageOptional = myPageRepository.findById(paid.getOrderId());
+            Optional<MyPage> myPageOptional = myPageRepository.findById(.getOrderId());
 
             if( myPageOptional.isPresent()) {
                  MyPage myPage = myPageOptional.get();

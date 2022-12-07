@@ -1,6 +1,5 @@
 package fooddelivery.domain;
 
-import fooddelivery.domain.Paid;
 import fooddelivery.PaymentApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -45,14 +44,6 @@ public class Payment  {
 
     @PostPersist
     public void onPostPersist(){
-    }
-    @PrePersist
-    public void onPrePersist(){
-
-
-        Paid paid = new Paid(this);
-        paid.publishAfterCommit();
-
     }
 
     public static PaymentRepository repository(){
