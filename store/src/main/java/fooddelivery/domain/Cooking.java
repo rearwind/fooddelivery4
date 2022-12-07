@@ -2,6 +2,9 @@ package fooddelivery.domain;
 
 import fooddelivery.StoreApplication;
 import javax.persistence.*;
+
+import org.bouncycastle.asn1.cmp.OOBCertHash;
+
 import java.util.List;
 import lombok.Data;
 import java.util.Date;
@@ -72,56 +75,52 @@ public class Cooking  {
 
 
     public void accept(AcceptCommand acceptCommand){
-        OrderAccepted orderAccepted = new OrderAccepted(this);
-        orderAccepted.publishAfterCommit();
 
-        OrderRejected orderRejected = new OrderRejected(this);
-        orderRejected.publishAfterCommit();
+        if (acceptCommand.getAccept()) {
+            OrderAccepted orderAccepted = new OrderAccepted(this);
+            orderAccepted.publishAfterCommit();
+
+            setStatus("수락됨");
+        } else {
+            OrderRejected orderRejected = new OrderRejected(this);
+            orderRejected.publishAfterCommit();
+
+            setStatus("거절됨");
+        }
 
     }
     public void start(){
         CookStarted cookStarted = new CookStarted(this);
         cookStarted.publishAfterCommit();
 
+        setStatus("요리시작됨");
     }
     public void finish(){
         CookFinished cookFinished = new CookFinished(this);
         cookFinished.publishAfterCommit();
 
+        setStatus("요리완료됨");
     }
 
     public static void copyOrderInfo(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         Cooking cooking = new Cooking();
+
+        cooking.setOrderId(orderPlaced.getId());
+        cooking.setFoodId(orderPlaced.getFoodId());
+        cooking.setQty(orderPlaced.getQty());
+        cooking.setAddress(orderPlaced.getAddress());
+        cooking.setCustomerId(orderPlaced.getCustomerId());
+        cooking.setStatus(orderPlaced.getStatus());
+
         repository().save(cooking);
 
-        */
+
 
         /** Example 2:  finding and process
         
         repository().findById(orderPlaced.get???()).ifPresent(cooking->{
-            
-            cooking // do something
-            repository().save(cooking);
-
-
-         });
-        */
-
-        
-    }
-    public static void updateStatus(Paid paid){
-
-        /** Example 1:  new item 
-        Cooking cooking = new Cooking();
-        repository().save(cooking);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(paid.get???()).ifPresent(cooking->{
             
             cooking // do something
             repository().save(cooking);
