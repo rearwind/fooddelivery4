@@ -4,7 +4,6 @@ import fooddelivery.infra.AbstractEvent;
 import lombok.Data;
 import java.util.*;
 
-
 @Data
 public class Picked extends AbstractEvent {
 

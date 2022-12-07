@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 public class MyPageViewHandler {
 
+
     @Autowired
     private MyPageRepository myPageRepository;
 
@@ -145,7 +146,24 @@ public class MyPageViewHandler {
             e.printStackTrace();
         }
     }
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenOrderCancelled_then_UPDATE_7(@Payload OrderCancelled orderCancelled) {
+        try {
+            if (!orderCancelled.validate()) return;
+                // view 객체 조회
 
+                List<MyPage> myPageList = myPageRepository.findByOrderId(orderCancelled.getId());
+                for(MyPage myPage : myPageList){
+                    // view 객체에 이벤트의 eventDirectValue 를 set 함
+                    myPage.setStatus(orderCancelled.getStatus());
+                // view 레파지 토리에 save
+                myPageRepository.save(myPage);
+                }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
 

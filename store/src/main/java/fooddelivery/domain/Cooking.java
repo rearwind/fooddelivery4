@@ -1,18 +1,17 @@
 package fooddelivery.domain;
 
+import fooddelivery.domain.CookCancelled;
 import fooddelivery.StoreApplication;
 import javax.persistence.*;
 import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="Cooking_table")
 @Data
 
 public class Cooking  {
-
 
     
     @Id
@@ -62,6 +61,11 @@ public class Cooking  {
 
     @PostPersist
     public void onPostPersist(){
+
+
+        CookCancelled cookCancelled = new CookCancelled(this);
+        cookCancelled.publishAfterCommit();
+
     }
 
     public static CookingRepository repository(){
@@ -111,21 +115,25 @@ public class Cooking  {
 
         
     }
-    public static void cancel(OrderCancelled orderCancelled){
+    public static void cancel(PayCancelled payCancelled){
 
         /** Example 1:  new item 
         Cooking cooking = new Cooking();
         repository().save(cooking);
 
+        CookCancelled cookCancelled = new CookCancelled(cooking);
+        cookCancelled.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(orderCancelled.get???()).ifPresent(cooking->{
+        repository().findById(payCancelled.get???()).ifPresent(cooking->{
             
             cooking // do something
             repository().save(cooking);
 
+            CookCancelled cookCancelled = new CookCancelled(cooking);
+            cookCancelled.publishAfterCommit();
 
          });
         */
