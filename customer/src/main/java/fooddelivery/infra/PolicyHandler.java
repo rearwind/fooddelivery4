@@ -17,6 +17,7 @@ import fooddelivery.domain.*;
 @Service
 @Transactional
 public class PolicyHandler{
+    @Autowired CouponMgmtRepository couponMgmtRepository;
     
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString){}
@@ -87,6 +88,37 @@ public class PolicyHandler{
         
 
         // Sample Logic //
+
+        
+
+    }
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='CouponIssued'")
+    public void wheneverCouponIssued_Notify(@Payload CouponIssued couponIssued){
+
+        CouponIssued event = couponIssued;
+        System.out.println("\n\n##### listener Notify : " + couponIssued + "\n\n");
+
+
+        
+
+        // Sample Logic //
+
+        
+
+    }
+
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='Delivered'")
+    public void wheneverDelivered_IssueCoupon(@Payload Delivered delivered){
+
+        Delivered event = delivered;
+        System.out.println("\n\n##### listener IssueCoupon : " + delivered + "\n\n");
+
+
+        
+
+        // Sample Logic //
+        CouponMgmt.issueCoupon(event);
+        
 
         
 

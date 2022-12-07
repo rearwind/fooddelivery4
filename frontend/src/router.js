@@ -17,6 +17,8 @@ import CookingDetail from "./components/listers/CookingDetail"
 import DeliveryManager from "./components/listers/DeliveryCards"
 import DeliveryDetail from "./components/listers/DeliveryDetail"
 
+import CouponMgmtManager from "./components/listers/CouponMgmtCards"
+import CouponMgmtDetail from "./components/listers/CouponMgmtDetail"
 
 import MyPageView from "./components/MyPageView"
 import MyPageViewDetail from "./components/MyPageViewDetail"
@@ -69,6 +71,16 @@ export default new Router({
                 component: DeliveryDetail
             },
 
+            {
+                path: '/couponMgmts',
+                name: 'CouponMgmtManager',
+                component: CouponMgmtManager
+            },
+            {
+                path: '/couponMgmts/:id',
+                name: 'CouponMgmtDetail',
+                component: CouponMgmtDetail
+            },
 
             {
                 path: '/myPages',
