@@ -11,6 +11,6 @@ import java.util.Date;
 
 @FeignClient(name = "payment", url = "${api.url.payment}", fallback = PaymentServiceImpl.class)
 public interface PaymentService {
-    @RequestMapping(method= RequestMethod.GET, path="/payments/{id}")
-    public Payment getPayment(@PathVariable("id") Long id);
+    @RequestMapping(method= RequestMethod.POST, path="/payments")
+    public void pay(@RequestBody Payment payment);
 }
