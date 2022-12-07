@@ -60,6 +60,8 @@ public class CouponMgmt  {
         CouponMgmt couponMgmt = new CouponMgmt();
         repository().save(couponMgmt);
 
+        CouponIssued couponIssued = new CouponIssued(couponMgmt);
+        couponIssued.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -69,6 +71,8 @@ public class CouponMgmt  {
             couponMgmt // do something
             repository().save(couponMgmt);
 
+            CouponIssued couponIssued = new CouponIssued(couponMgmt);
+            couponIssued.publishAfterCommit();
 
          });
         */

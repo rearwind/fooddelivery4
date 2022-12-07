@@ -1,5 +1,6 @@
 package fooddelivery.domain;
 
+import fooddelivery.domain.CookCancelled;
 import fooddelivery.StoreApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -62,6 +63,11 @@ public class Cooking  {
 
     @PostPersist
     public void onPostPersist(){
+
+
+        CookCancelled cookCancelled = new CookCancelled(this);
+        cookCancelled.publishAfterCommit();
+
     }
 
     public static CookingRepository repository(){
@@ -105,6 +111,31 @@ public class Cooking  {
             cooking // do something
             repository().save(cooking);
 
+
+         });
+        */
+
+        
+    }
+    public static void cancel(OrderCancelled orderCancelled){
+
+        /** Example 1:  new item 
+        Cooking cooking = new Cooking();
+        repository().save(cooking);
+
+        CookCancelled cookCancelled = new CookCancelled(cooking);
+        cookCancelled.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderCancelled.get???()).ifPresent(cooking->{
+            
+            cooking // do something
+            repository().save(cooking);
+
+            CookCancelled cookCancelled = new CookCancelled(cooking);
+            cookCancelled.publishAfterCommit();
 
          });
         */

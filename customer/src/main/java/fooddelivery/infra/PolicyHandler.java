@@ -106,6 +106,20 @@ public class PolicyHandler{
         
 
     }
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='PayCancelled'")
+    public void wheneverPayCancelled_Notify(@Payload PayCancelled payCancelled){
+
+        PayCancelled event = payCancelled;
+        System.out.println("\n\n##### listener Notify : " + payCancelled + "\n\n");
+
+
+        
+
+        // Sample Logic //
+
+        
+
+    }
 
     @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='Delivered'")
     public void wheneverDelivered_IssueCoupon(@Payload Delivered delivered){
