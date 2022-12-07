@@ -60,11 +60,15 @@ public class Delivery  {
 
 
     public void pick(){
+        setStatus("배달시작됨");
+
         Picked picked = new Picked(this);
         picked.publishAfterCommit();
 
     }
     public void confirmDelivered(){
+        setStatus("배달완료됨");
+
         Delivered delivered = new Delivered(this);
         delivered.publishAfterCommit();
 
@@ -72,11 +76,19 @@ public class Delivery  {
 
     public static void copyOrderInfo(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         Delivery delivery = new Delivery();
+
+        delivery.setOrderId(orderPlaced.getId());
+        delivery.setFoodId(orderPlaced.getFoodId());
+        delivery.setQty(orderPlaced.getQty());
+        delivery.setAddress(orderPlaced.getAddress());
+        delivery.setCustomerId(orderPlaced.getCustomerId());
+        delivery.setStatus(orderPlaced.getStatus());
+
         repository().save(delivery);
 
-        */
+        
 
         /** Example 2:  finding and process
         
@@ -99,16 +111,16 @@ public class Delivery  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(cookFinished.get???()).ifPresent(delivery->{
+        repository().findByOrderId(cookFinished.getOrderId()).ifPresent(delivery->{
             
-            delivery // do something
+            delivery.setStatus("요리완료됨"); // "요리완료됨"으로 상태 변경 -> 배송건 조회 가능
             repository().save(delivery);
 
 
          });
-        */
+        
 
         
     }

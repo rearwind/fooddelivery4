@@ -26,7 +26,7 @@ public class DeliveryController {
         produces = "application/json;charset=UTF-8")
     public Delivery pick(@PathVariable(value = "id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
             System.out.println("##### /delivery/pick  called #####");
-            Optional<Delivery> optionalDelivery = deliveryRepository.findById(id);
+            Optional<Delivery> optionalDelivery = deliveryRepository.findByOrderId(id);
             
             optionalDelivery.orElseThrow(()-> new Exception("No Entity Found"));
             Delivery delivery = optionalDelivery.get();

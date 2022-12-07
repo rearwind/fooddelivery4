@@ -38,13 +38,8 @@ public class CouponMgmt  {
     private Integer orderCount;
 
     @PostUpdate
-    public void onPostUpdate(){
+    public void onPostUpdate() {}
 
-
-        CouponIssued couponIssued = new CouponIssued(this);
-        couponIssued.publishAfterCommit();
-
-    }
 
     public static CouponMgmtRepository repository(){
         CouponMgmtRepository couponMgmtRepository = CustomerApplication.applicationContext.getBean(CouponMgmtRepository.class);
@@ -62,16 +57,23 @@ public class CouponMgmt  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(delivered.get???()).ifPresent(couponMgmt->{
+        repository().findByCustomerId(delivered.getCustomerId()).ifPresent(couponMgmt->{    // 가입고객(customerId) 찾기
             
-            couponMgmt // do something
+            couponMgmt.setOrderCount(Integer.valueOf(couponMgmt.getOrderCount())+1) // 고객의 완료된 주문횟수 증가
+
+            if (Integer.valueOf(couponMgmt.getOrderCount()) == 0) {                 // 3번째 주문마다 쿠폰발행 ("쿠폰발행됨" 이벤트 Publish)
+                CouponIssued couponIssued = new CouponIssued(this);
+                couponIssued.publishAfterCommit();
+
+                couponMgmt.setOrderCount(Integer.valueOf(0));                       // 쿠폰발행 후 주문횟수 0으로 리셋
+            }
+
             repository().save(couponMgmt);
 
-
          });
-        */
+        
 
         
     }
