@@ -7,13 +7,11 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 
-
 @Entity
 @Table(name="Payment_table")
 @Data
 
 public class Payment  {
-
 
     
     @Id
@@ -36,12 +34,6 @@ public class Payment  {
     
     
     private String status;
-    
-    
-    
-    
-    
-    private String action;
 
     @PostPersist
     public void onPostPersist(){
