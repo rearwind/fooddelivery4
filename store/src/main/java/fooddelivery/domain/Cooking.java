@@ -77,29 +77,29 @@ public class Cooking  {
     public void accept(AcceptCommand acceptCommand){
 
         if (acceptCommand.getAccept()) {
+            setStatus("수락됨");
+            
             OrderAccepted orderAccepted = new OrderAccepted(this);
             orderAccepted.publishAfterCommit();
-
-            setStatus("수락됨");
         } else {
+            setStatus("거절됨");
+
             OrderRejected orderRejected = new OrderRejected(this);
             orderRejected.publishAfterCommit();
-
-            setStatus("거절됨");
         }
 
     }
     public void start(){
+        setStatus("요리시작됨");
+
         CookStarted cookStarted = new CookStarted(this);
         cookStarted.publishAfterCommit();
-
-        setStatus("요리시작됨");
     }
     public void finish(){
+        setStatus("요리완료됨");
+
         CookFinished cookFinished = new CookFinished(this);
         cookFinished.publishAfterCommit();
-
-        setStatus("요리완료됨");
     }
 
     public static void copyOrderInfo(OrderPlaced orderPlaced){
