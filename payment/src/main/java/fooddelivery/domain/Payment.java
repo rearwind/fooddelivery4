@@ -69,10 +69,11 @@ public class Payment  {
         repository().findByOrderId(orderCancelled.getId()).ifPresent(payment->{
             
             payment.setStatus("결제취소됨"); // do something
-            repository().save(payment);
 
             PayCancelled payCancelled = new PayCancelled(payment);
             payCancelled.publishAfterCommit();
+
+            repository().save(payment);
 
          });
         

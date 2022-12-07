@@ -80,8 +80,6 @@ public class Delivery  {
         Delivery delivery = new Delivery();
 
         delivery.setOrderId(orderPlaced.getId());
-        delivery.setFoodId(orderPlaced.getFoodId());
-        delivery.setQty(orderPlaced.getQty());
         delivery.setAddress(orderPlaced.getAddress());
         delivery.setCustomerId(orderPlaced.getCustomerId());
         delivery.setStatus(orderPlaced.getStatus());

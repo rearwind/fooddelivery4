@@ -139,16 +139,18 @@ public class Cooking  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(orderCancelled.get???()).ifPresent(cooking->{
+        repository().findByOrderId(orderCancelled.getId()).ifPresent(cooking->{
             
-            cooking // do something
-            repository().save(cooking);
+            if (!"요리시작됨".equals(cooking.getStatus()) && !"요리완료됨".equals(cooking.getStatus())) {
 
+                cooking.setStatus("요리취소됨");
+                repository().save(cooking);
 
-         });
-        */
+         }
+        });
+        
 
         
     }
