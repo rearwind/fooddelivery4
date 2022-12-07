@@ -89,12 +89,8 @@ public class Order  {
 
 
     public void cancel(){
-
-
-    }
-
-
-    public void cancel(){
+        setStatus("주문취소됨");
+        
         OrderCancelled orderCancelled = new OrderCancelled(this);
         orderCancelled.publishAfterCommit();
 

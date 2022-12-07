@@ -128,16 +128,16 @@ public class Delivery  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(cookCancelled.get???()).ifPresent(delivery->{
+        repository().findByOrderId(cookCancelled.getOrderId()).ifPresent(delivery->{
             
-            delivery // do something
+            delivery.setStatus("배달취소됨"); // do something
             repository().save(delivery);
 
 
          });
-        */
+        
 
         
     }
