@@ -13,6 +13,8 @@ public class PaymentServiceImpl implements PaymentService {
     public void pay(Payment payment) {
 
         System.out.println("\n\n##### 결제시스템이 과중된 상태입니다. 나중에 다시 주문해주세요.\n\n");
+        
+        throw new RuntimeException("\n\n##### 결제시스템이 과중된 상태입니다. 나중에 다시 주문해주세요.\n\n");
 
     }
 
