@@ -72,12 +72,8 @@ public class Order  {
         OrderPlaced orderPlaced = new OrderPlaced(this);
         orderPlaced.publishAfterCommit();
 
-        // Get request from Payment
-        //fooddelivery.external.Payment payment =
-        //    Application.applicationContext.getBean(fooddelivery.external.PaymentService.class)
-        //    .getPayment(/** mapping value needed */);
-
     }
+    
     @PreRemove
     public void onPreRemove(){
     }
