@@ -38,6 +38,12 @@ public class Payment  {
     @PrePersist
     public void onPrePersist(){
 
+        // try {
+        //     Thread.currentThread().sleep((long) (400 + Math.random() * 250));
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+
         setStatus("결제됨");
 
     }
