@@ -65,7 +65,7 @@ public class Order  {
         payment.setOrderId(getId());
 
         OrderApplication.applicationContext.getBean(fooddelivery.external.PaymentService.class)
-            .pay(payment);
+        .pay(payment);
         
         setStatus("주문됨");
 
@@ -78,6 +78,7 @@ public class Order  {
         //    .getPayment(/** mapping value needed */);
 
     }
+    
     @PreRemove
     public void onPreRemove(){
     }
